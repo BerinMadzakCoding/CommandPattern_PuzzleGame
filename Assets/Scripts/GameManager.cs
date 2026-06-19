@@ -1,33 +1,77 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GridManager gridManager;
-    [SerializeField] private PlayerController player;
-    [SerializeField] private Transform victoryScreen;
+    public static GameManager Instance { get; private set; }
 
-    private void OnEnable()
+    [SerializeField] private Transform victoryScreen;
+    [SerializeField] private Transform defeatScreen;
+    [SerializeField] private TMP_Text turnCountText;
+
+    public int TurnsToComplete { get; set; }
+    private int turnCount = 0;
+
+    private void Awake()
     {
-        player.OnMoveCompleted += HandleMoveCompleted;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+    private void Start()
+    {
+        PlayerController.Instance.OnMoveCompleted += HandleMoveCompleted;
     }
 
     private void OnDisable()
     {
-        player.OnMoveCompleted -= HandleMoveCompleted;
+        PlayerController.Instance.OnMoveCompleted -= HandleMoveCompleted;
     }
 
     private void HandleMoveCompleted(Vector2Int coord)
     {
-        if (coord == gridManager.EndCoord)
+        IncrementTurnCount();
+        UpdateUI();
+        if (coord == GridManager.Instance.EndCoord)
         {
             victoryScreen.gameObject.SetActive(true);
         }
+        else if (turnCount >= TurnsToComplete)
+        {
+            defeatScreen.gameObject.SetActive(true);
+        }
+    }
+
+    public void IncrementTurnCount()
+    {
+        turnCount++;
+        UpdateUI();
+    }
+
+    public void DecrementTurnCount()
+    {
+        turnCount--;
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        turnCountText.text = "Turns: " + turnCount.ToString() + "/" + TurnsToComplete.ToString();
     }
 
     public void RestartGame()
     {
+        turnCount = 0;
+        UpdateUI();
         victoryScreen.gameObject.SetActive(false);
-        gridManager.GenerateMap();
-        player.SetCoords();
+        defeatScreen.gameObject.SetActive(false);
+        GridManager.Instance.GenerateMap();
+        PlayerController.Instance.SetCoords();
     }
 }

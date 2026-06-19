@@ -12,4 +12,6 @@ public class MapLayout : ScriptableObject
         ".....",
         ".#..E"
     };
+
+    public int turns = 5;
 }

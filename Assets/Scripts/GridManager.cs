@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
+    public static GridManager Instance { get; private set; }
+
     [Header("Level Layout")]
     [SerializeField] private MapLayout[] layouts;
 
@@ -27,18 +29,33 @@ public class GridManager : MonoBehaviour
 
     private void Awake()
     {
-        GenerateMap();
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.RestartGame();
     }
 
     public void GenerateMap()
     {
+        ClearVisual();
         ParseLayout();
         BuildVisuals();
     }
 
     private void ParseLayout()
     {
-        string[] layout = layouts[Random.Range(0, layouts.Length)].layout;
+        MapLayout layoutSO = layouts[Random.Range(0, layouts.Length)];
+        string[] layout = layoutSO.layout;
+        GameManager.Instance.TurnsToComplete = layoutSO.turns;
         Height = layout.Length;
         Width = layout[0].Length;
         grid = new CellType[Width, Height];
@@ -99,6 +116,14 @@ public class GridManager : MonoBehaviour
                         break;
                 }
             }
+        }
+    }
+
+    public void ClearVisual()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
         }
     }
 
