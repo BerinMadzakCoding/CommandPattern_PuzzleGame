@@ -9,6 +9,12 @@ public class MoveButton : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Button>().onClick.AddListener(() => PlayerController.Instance.Move(direction));
+        GetComponent<Button>().onClick.AddListener(CreateMoveCommand);
+    }
+
+    private void CreateMoveCommand()
+    {
+        MoveCommand command = new MoveCommand(direction);
+        CommandManager.Instance.ExecuteCommand(command);
     }
 }

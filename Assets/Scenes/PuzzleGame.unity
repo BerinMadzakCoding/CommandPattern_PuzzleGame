@@ -916,6 +916,7 @@ GameObject:
   - component: {fileID: 394187436}
   - component: {fileID: 394187435}
   - component: {fileID: 394187434}
+  - component: {fileID: 394187438}
   m_Layer: 5
   m_Name: History
   m_TagString: Untagged
@@ -1020,6 +1021,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394187432}
   m_CullTransparentMesh: 1
+--- !u!114 &394187438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394187432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d643631b0640bff48962b079deef1bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CommandHistoryManager
+  historyIconPrefab: {fileID: 3918298881828242446, guid: 593eea81b34152149ae445958b291e06, type: 3}
+--- !u!1 &397347053
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 397347055}
+  - component: {fileID: 397347054}
+  m_Layer: 0
+  m_Name: CommandManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &397347054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397347053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 515e334178d57994a81e1d714c7a1fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CommandManager
+--- !u!4 &397347055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397347053}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -3047,6 +3105,7 @@ GameObject:
   - component: {fileID: 2039338468}
   - component: {fileID: 2039338467}
   - component: {fileID: 2039338466}
+  - component: {fileID: 2039338469}
   m_Layer: 5
   m_Name: Undo
   m_TagString: Untagged
@@ -3156,6 +3215,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039338463}
   m_CullTransparentMesh: 1
+--- !u!114 &2039338469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039338463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 253e39935e1c40f4282cfc8e56700c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UndoButton
 --- !u!1 &2105738590
 GameObject:
   m_ObjectHideFlags: 0
@@ -3305,3 +3376,4 @@ SceneRoots:
   - {fileID: 417100561}
   - {fileID: 251536773}
   - {fileID: 1007730212}
+  - {fileID: 397347055}

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public event System.Action OnGameRestarted;
+
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private Transform victoryScreen;
@@ -67,11 +69,12 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        OnGameRestarted?.Invoke();
         turnCount = 0;
-        UpdateUI();
         victoryScreen.gameObject.SetActive(false);
         defeatScreen.gameObject.SetActive(false);
         GridManager.Instance.GenerateMap();
         PlayerController.Instance.SetCoords();
+        UpdateUI();
     }
 }

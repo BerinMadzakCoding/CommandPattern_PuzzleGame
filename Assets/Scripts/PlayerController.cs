@@ -36,26 +36,15 @@ public class PlayerController : MonoBehaviour
         transform.position = GridManager.Instance.GetSurfaceWorld(CurrentCoord);
     }
 
-    public void Move(Vector2Int direction)
+    public void Move(Vector2Int finalCoord, bool undo = false)
     {
         if (IsMoving) return;
 
-        Vector2Int finalCoord = CurrentCoord;
-        Vector2Int nextCoord = CurrentCoord + direction;
-
-        while (!GridManager.Instance.IsBlocked(nextCoord))
-        {
-            finalCoord = nextCoord;
-            nextCoord += direction;
-        }
-
-        if (finalCoord == CurrentCoord) return;
-
         transform.LookAt(GridManager.Instance.GridToWorld(finalCoord));
-        StartCoroutine(MoveRoutine(finalCoord));
+        StartCoroutine(MoveRoutine(finalCoord, undo));
     }
 
-    private IEnumerator MoveRoutine(Vector2Int targetCoord)
+    private IEnumerator MoveRoutine(Vector2Int targetCoord, bool undo)
     {
         IsMoving = true;
         Vector3 targetPos = GridManager.Instance.GetSurfaceWorld(targetCoord);
@@ -70,6 +59,6 @@ public class PlayerController : MonoBehaviour
         CurrentCoord = targetCoord;
         IsMoving = false;
 
-        OnMoveCompleted?.Invoke(CurrentCoord);
+        if(!undo) OnMoveCompleted?.Invoke(CurrentCoord);
     }
 }
