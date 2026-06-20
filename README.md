@@ -1,6 +1,6 @@
 # Undoable Move System using the Command Pattern
 
-A grid-based puzzle game built in **Unity 6** that uses the **Command Design Pattern** to give the player full, multi-step undo over their moves. This repository is the complete companion project for the technical tutorial published on **TODO**.
+A grid-based puzzle game built in **Unity 6** that uses the **Command Design Pattern** to give the player full, multi-step undo over their moves. This repository is the complete companion project for the technical tutorial published on [**Hashnode**](https://codeandarchitecture.hashnode.dev/implementing-the-undo-functionality-in-unity-using-the-command-pattern).
 
 The architecture turns every player move into a self-contained `ICommand` object that knows how to execute and reverse itself, decoupling input handling and UI from the actual movement logic — and making "what happened, in what order" trivial to track and roll back.
 
@@ -14,19 +14,6 @@ The architecture turns every player move into a self-contained `ICommand` object
 * **Event-Driven History UI** — `CommandManager` raises `OnCommandExecuted` / `OnCommandUndone` events, which a separate `CommandHistoryManager` listens to in order to render move-history icons — no direct reference between gameplay and UI.
 * **Silent Undo Replay** — `PlayerController.Move()` accepts an optional `undo` flag, so reversing a move doesn't re-fire the same completion events a normal move would.
 
-## Project Structure
-
-| Script | Responsibility |
-|---|---|
-| `ICommand.cs` | Command contract: `Execute()`, `Undo()`, `IsValid` |
-| `MoveCommand.cs` | Concrete command capturing origin/target coordinates for a single move |
-| `CommandManager.cs` | Executes commands, maintains the undo history stack, raises history events |
-| `CommandHistoryManager.cs` | Observer that renders the on-screen move-history icons |
-| `GridManager.cs` | Loads `MapLayout` data and resolves tile collisions |
-| `PlayerController.cs` | Handles the actual sliding movement on the grid |
-| `GameManager.cs` | Tracks turn count and overall game state |
-| `MoveButton.cs` / `UndoButton.cs` | UI input for issuing and undoing moves |
-
 ## Tech Stack & Version
 
 * **Engine:** Unity 6000.3.17f1 (or newer)
@@ -34,7 +21,7 @@ The architecture turns every player move into a self-contained `ICommand` object
 
 ## Getting Started
 
-1. Clone the repository and open it with Unity Hub (it will prompt you to install `6000.3.17f1` if needed).
+1. Clone the repository and open it with Unity Hub.
 2. Open the `PuzzleGame` scene under `Assets/Scenes`.
 3. Press Play. Use the directional buttons to slide across the grid toward the goal tile, and use the undo button to step back through your move history.
 
@@ -47,7 +34,3 @@ cd CommandPattern_PuzzleGame
 
 * **`main`** *(you are here)* — the finished project: full command/undo logic and move-history UI.
 * **[`StartingProject`](https://github.com/BerinMadzakCoding/CommandPattern_PuzzleGame/tree/StartingProject)** — the baseline sandbox with grid movement only and no undo functionality. Use this if you want to implement the Command pattern yourself by following the tutorial.
-
-## Related
-
-The move-history UI is wired up using the same event-driven Observer approach covered in [Creating a Robust Quest System in Unity Using the Observer Pattern](https://codeandarchitecture.hashnode.dev/creating-a-robust-quest-system-in-unity-using-the-observer-pattern).
