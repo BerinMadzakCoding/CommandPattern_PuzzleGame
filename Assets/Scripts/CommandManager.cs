@@ -45,4 +45,6 @@ public class CommandManager : MonoBehaviour
 
         OnCommandUndone?.Invoke();
     }
+
+    public void ClearHistory() => commandHistory.Clear();
 }

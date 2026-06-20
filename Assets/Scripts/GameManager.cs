@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         OnGameRestarted?.Invoke();
+        CommandManager.Instance.ClearHistory();
         turnCount = 0;
         victoryScreen.gameObject.SetActive(false);
         defeatScreen.gameObject.SetActive(false);
