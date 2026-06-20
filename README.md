@@ -1,6 +1,6 @@
 # Undoable Move System using the Command Pattern
 
-A grid-based puzzle game built in **Unity 6** that uses the **Command Design Pattern** to give the player full, multi-step undo over their moves. This repository is the complete companion project for the technical tutorial published on [**Hashnode**](https://codeandarchitecture.hashnode.dev/implementing-the-undo-functionality-in-unity-using-the-command-pattern).
+A grid-based puzzle game built in **Unity 6** that uses the **Command Design Pattern** to give the player full, multi-step undo over their moves. This repository is the complete companion project for the technical tutorial published on [**Code & Architecture**](https://codeandarchitecture.hashnode.dev/implementing-the-undo-functionality-in-unity-using-the-command-pattern).
 
 The architecture turns every player move into a self-contained `ICommand` object that knows how to execute and reverse itself, decoupling input handling and UI from the actual movement logic — and making "what happened, in what order" trivial to track and roll back.
 
