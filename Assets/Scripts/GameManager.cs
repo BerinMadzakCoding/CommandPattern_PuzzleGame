@@ -68,10 +68,10 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         turnCount = 0;
-        UpdateUI();
         victoryScreen.gameObject.SetActive(false);
         defeatScreen.gameObject.SetActive(false);
         GridManager.Instance.GenerateMap();
         PlayerController.Instance.SetCoords();
+        UpdateUI();
     }
 }
