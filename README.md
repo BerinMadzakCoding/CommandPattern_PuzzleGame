@@ -1,6 +1,6 @@
 # Undoable Move System using the Command Pattern — Starting Project
 
-This is the **starting branch** for the companion project to the tutorial on implementing undo in a grid puzzle game with the Command pattern (**TODO: tutorial link**). The core gameplay loop already works — the player can slide around a grid toward a goal tile — but **there's no way to undo a move yet**. You'll build that from scratch by following the tutorial, encapsulating each move as an `ICommand` object.
+This is the **starting branch** for the companion project to the tutorial on implementing undo in a grid puzzle game with the Command pattern ([**Link**](https://codeandarchitecture.hashnode.dev/implementing-the-undo-functionality-in-unity-using-the-command-pattern)). The core gameplay loop already works — the player can slide around a grid toward a goal tile — but **there's no way to undo a move yet**. You'll build that from scratch by following the tutorial, encapsulating each move as an `ICommand` object.
 
 > Want to see the finished result first, or just grab the working code? Switch to the [`main`](https://github.com/BerinMadzakCoding/CommandPattern_PuzzleGame) branch instead.
 
